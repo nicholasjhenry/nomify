@@ -14,6 +14,7 @@ config :spark,
     remove_parens?: true,
     "Ash.Resource": [
       section_order: [
+        :postgres,
         :resource,
         :code_interface,
         :actions,
@@ -86,6 +87,10 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :nomify, :ash_domains, [Nomify.Documents]
+
+config :ash, :include_embedded_source_by_default?, true
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

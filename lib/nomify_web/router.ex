@@ -1,6 +1,8 @@
 defmodule NomifyWeb.Router do
   use NomifyWeb, :router
 
+  import AshAdmin.Router
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -14,10 +16,23 @@ defmodule NomifyWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/" do
+    pipe_through [:browser]
+
+    ash_admin("/admin")
+  end
+
   scope "/", NomifyWeb do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/documents", DocumentLive.Index, :index
+    live "/documents/new", DocumentLive.Index, :new
+    live "/documents/:id/edit", DocumentLive.Index, :edit
+
+    live "/documents/:id", DocumentLive.Show, :show
+    live "/documents/:id/show/edit", DocumentLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

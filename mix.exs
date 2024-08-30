@@ -33,8 +33,10 @@ defmodule Nomify.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:ash_postgres, "~> 2.0"},
       {:ash, "~> 3.0"},
+      {:ash_postgres, "~> 2.0"},
+      {:ash_phoenix, "~> 2.1"},
+      {:ash_admin, "~> 0.11.4"},
       {:igniter, "~> 0.3"},
       {:phoenix, "~> 1.7.14"},
       {:phoenix_ecto, "~> 4.5"},
